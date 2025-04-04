@@ -4,8 +4,6 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from app.route.api import router as ask_router
 
-load_dotenv()
-
 app = FastAPI()
 
 app.add_middleware(
