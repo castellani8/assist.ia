@@ -1,10 +1,9 @@
 from fastapi import APIRouter, Request, Header, Depends
-from app.services.gemini import get_gemini_response
 import os
 from pydantic import BaseModel
 from fastapi import HTTPException
 from dotenv import load_dotenv
-from app.services.groq import get_groq_response
+from app.services.external.groq import get_groq_response
 
 load_dotenv()
 
@@ -24,4 +23,5 @@ def read_root(request: AskRequest, _=Depends(verify_token)):
     instructions = request.instructions
     prompt = request.question
     response = get_groq_response(instructions, prompt)
+    
     return {"response": response}
