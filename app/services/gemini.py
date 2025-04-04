@@ -5,7 +5,7 @@ GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 def get_gemini_response(
         prompt: str, 
-        model: str = "gemini-1.5-flash"
+        model: str = "gemini-2.0-flash-lite"
         ) -> str:
     client = genai.Client(api_key=GOOGLE_API_KEY)
 
