@@ -6,12 +6,12 @@ from pydantic import BaseModel
 router = APIRouter()
 
 class AskRequest(BaseModel):
+    instructions: str = os.getenv("DEFAULT_INSTRUCTIONS")
     question: str
 
 @router.post("/api/ask")
 def read_root(request: AskRequest):
-    instructions = os.getenv("INSTRUCTIONS")
-    print(request.question)
+    instructions = request.instructions
     prompt = request.question
     response = get_gemini_response(instructions+"\n\n"+prompt)
     return {"response": response}
