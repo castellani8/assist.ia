@@ -1,16 +1,14 @@
-from google import genai
-from google.genai import types
+from services.gemini import get_gemini_response
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
 
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-client = genai.Client(api_key=GOOGLE_API_KEY)
+def main():
+    instructions = os.getenv("INSTRUCTIONS")
+    print(instructions)
+    prompt = "who created you?"
+    print(get_gemini_response(instructions+"\n\n"+prompt))
 
-prompt = "How are you?"
-response = client.models.generate_content(
-    model="gemini-1.5-flash",
-    contents=prompt)
-
-print(response.text)
+if __name__ == "__main__":
+    main()

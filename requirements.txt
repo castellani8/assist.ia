@@ -1,3 +1,5 @@
 google-genai
 google
 dotenv
+fastapi
+uvicorn
