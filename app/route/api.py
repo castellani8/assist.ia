@@ -4,6 +4,7 @@ import os
 from pydantic import BaseModel
 from fastapi import HTTPException
 from dotenv import load_dotenv
+from app.services.groq import get_groq_response
 
 load_dotenv()
 
@@ -22,5 +23,5 @@ def verify_token(x_token: str = Header(...)):
 def read_root(request: AskRequest, _=Depends(verify_token)):
     instructions = request.instructions
     prompt = request.question
-    response = get_gemini_response(instructions+"\n\n"+prompt)
+    response = get_groq_response(instructions, prompt)
     return {"response": response}

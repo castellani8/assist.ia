@@ -10,15 +10,13 @@ load_dotenv()
 
 app = FastAPI(
     title="Assist.IA API",
-    description="An AI assistant API powered by Google's Gemini model",
+    description="An AI assistant API powered by Lucas Castellani",
     version="1.0.0"
 )
 
-# Configure CORS with specific origins
 origins = [
-    "http://localhost:3000",  # React default port
-    "http://localhost:8000",  # FastAPI default port
-    # Add your production domains here
+    "http://localhost:3000",
+    "http://localhost:8000",
 ]
 
 app.add_middleware(
@@ -29,13 +27,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Mount static files
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
-# Serve index.html at the root
 @app.get("/")
 async def read_root():
     return FileResponse("app/static/index.html")
 
-# Add the main router
 app.include_router(ask_router, prefix="", tags=["ask"])
