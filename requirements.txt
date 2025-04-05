@@ -5,3 +5,12 @@ fastapi
 uvicorn
 langchain-groq
 groq
+langchain-huggingface
+sentence-transformers
+chromadb
+langchain-text-splitters
+langchain-chroma
+tf-keras
+sentence-transformers
+langchain
+langchain-community
