@@ -1,6 +1,6 @@
 # Assist.IA - AI Assistant API
 
-This is a FastAPI-based application that provides an interface to interact with Google's Gemini AI model. The application allows you to send questions and receive AI-generated responses.
+This is a FastAPI-based application that provides an interface to interact with Groq Models. The application allows you to send questions and receive AI-generated responses.
 
 ## Installation Instructions
 
@@ -71,7 +71,7 @@ curl -X POST "http://localhost:8000/api/ask" \
 
 ## Features
 
-- Integration with Google's Gemini AI model
+- Integration with GROQ Cloud
 - Customizable instructions for each request
 - FastAPI-powered REST API
 - CORS enabled for cross-origin requests
@@ -81,13 +81,13 @@ curl -X POST "http://localhost:8000/api/ask" \
 ## Requirements
 
 - Python 3.7+
-- Google API key for Gemini
+- Groq API
 - Dependencies listed in requirements.txt
 
 ## Error Handling
 
 The API will return an error message if:
-- The Google API key is invalid or missing
+- The GROQ API key is invalid or missing
 - There's an error in generating the response
 - The request format is incorrect
 

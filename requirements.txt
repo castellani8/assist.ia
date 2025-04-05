@@ -3,3 +3,5 @@ google
 dotenv
 fastapi
 uvicorn
+langchain-groq
+groq
