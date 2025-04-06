@@ -4,6 +4,7 @@ from pydantic import BaseModel
 from fastapi import HTTPException
 from dotenv import load_dotenv
 from app.services.ai.rag import query
+from app.api.dependecies import get_db
 
 load_dotenv()
 
@@ -19,8 +20,11 @@ def verify_token(x_token: str = Header(...)):
             raise HTTPException(status_code=401, detail="Unauthorized")
 
 @router.post("/api/ask")
-def read_root(request: AskRequest, _=Depends(verify_token)):
-    print(os.getenv("DEFAULT_INSTRUCTIONS"))
+def read_root(
+    request: AskRequest,
+    db=Depends(get_db),
+    _=Depends(verify_token)
+):
     instructions = request.instructions
     prompt = request.question
     response = query(instructions, prompt)
