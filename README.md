@@ -1,6 +1,6 @@
 # Assist.IA - AI Assistant API
 
-This is a FastAPI-based application that provides an interface to interact with Groq Models. The application allows you to send questions and receive AI-generated responses.
+This is a FastAPI-based application that provides an interface to interact with Groq Models. The application allows you to send questions and receive AI-generated responses, with built-in authentication support.
 
 ## Installation Instructions
 
@@ -26,10 +26,15 @@ pip install -r requirements.txt
 
 4. Set up environment variables:
    - Copy the `.env.example` file to `.env`
-   - Add your Google API key to the `.env` file:
+   - Configure the following environment variables in your `.env` file:
      ```
-     GOOGLE_API_KEY=your_api_key_here
-     DEFAULT_INSTRUCTIONS=your_default_instructions_here
+     GOOGLE_API_KEY=your_google_api_key
+     GROQ_API_KEY=your_groq_api_key
+     DEFAULT_INSTRUCTIONS=your_default_instructions
+     ENABLE_AUTH=true
+     TOKEN_SECRET=your_token_secret
+     CHROMA_PATH=./chroma_db
+     LOCAL_DATA_PATH=./data
      ```
 
 ## Running the Application
@@ -42,6 +47,10 @@ uvicorn app.main:app --reload
 The server will start at `http://localhost:8000`
 
 ## API Usage
+
+### Authentication
+
+The API supports authentication. When `ENABLE_AUTH` is set to `true`, you need to include a valid token in your requests.
 
 ### Endpoint: POST /api/ask
 
@@ -59,6 +68,7 @@ Send questions to the AI assistant using this endpoint.
 ```bash
 curl -X POST "http://localhost:8000/api/ask" \
      -H "Content-Type: application/json" \
+     -H "Authorization: Bearer your_token_here" \
      -d '{"question": "What is artificial intelligence?"}'
 ```
 
@@ -77,23 +87,30 @@ curl -X POST "http://localhost:8000/api/ask" \
 - CORS enabled for cross-origin requests
 - Environment variable configuration
 - Error handling for API requests
+- Authentication support
+- Vector database integration with ChromaDB
+- Local data storage support
 
 ## Requirements
 
 - Python 3.7+
 - Groq API
+- Google API
 - Dependencies listed in requirements.txt
 
 ## Error Handling
 
 The API will return an error message if:
 - The GROQ API key is invalid or missing
+- The Google API key is invalid or missing
 - There's an error in generating the response
 - The request format is incorrect
+- Authentication fails (when enabled)
 
 ## Security Notes
 
-- Keep your API key secure and never commit it to version control
+- Keep your API keys and token secret secure and never commit them to version control
 - Use environment variables for sensitive information
 - The API is configured to accept requests from any origin (CORS) - modify this in production
+- When authentication is enabled, ensure proper token management
 
