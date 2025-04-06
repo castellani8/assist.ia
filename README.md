@@ -28,7 +28,6 @@ pip install -r requirements.txt
    - Copy the `.env.example` file to `.env`
    - Configure the following environment variables in your `.env` file:
      ```
-     GOOGLE_API_KEY=your_google_api_key
      GROQ_API_KEY=your_groq_api_key
      DEFAULT_INSTRUCTIONS=your_default_instructions
      ENABLE_AUTH=true
@@ -95,14 +94,12 @@ curl -X POST "http://localhost:8000/api/ask" \
 
 - Python 3.7+
 - Groq API
-- Google API
 - Dependencies listed in requirements.txt
 
 ## Error Handling
 
 The API will return an error message if:
 - The GROQ API key is invalid or missing
-- The Google API key is invalid or missing
 - There's an error in generating the response
 - The request format is incorrect
 - Authentication fails (when enabled)
