@@ -6,8 +6,8 @@ from langchain.vectorstores.chroma import Chroma
 from langchain.embeddings import HuggingFaceEmbeddings
 
 
-LOCAL_DATA_PATH = "data/files"
-CHROMA_PATH = "data/chroma"
+LOCAL_DATA_PATH = os.getenv("LOCAL_DATA_PATH")
+CHROMA_PATH = os.getenv("CHROMA_PATH")
 BATCH_SIZE = 500 
 
 def main():

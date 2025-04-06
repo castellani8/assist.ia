@@ -5,7 +5,7 @@ from langchain.prompts import ChatPromptTemplate
 from app.services.external.groq import get_groq_response
 import os
 
-CHROMA_PATH = "data/chroma"
+CHROMA_PATH = os.getenv("CHROMA_PATH")
 
 PROMPT_TEMPLATE = """
 ***INSTRUCTIONS***
