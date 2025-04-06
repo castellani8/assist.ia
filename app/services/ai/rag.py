@@ -4,6 +4,9 @@ from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.prompts import ChatPromptTemplate
 from app.services.external.groq import get_groq_response
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 CHROMA_PATH = os.getenv("CHROMA_PATH")
 

@@ -20,6 +20,7 @@ def verify_token(x_token: str = Header(...)):
 
 @router.post("/api/ask")
 def read_root(request: AskRequest, _=Depends(verify_token)):
+    print(os.getenv("DEFAULT_INSTRUCTIONS"))
     instructions = request.instructions
     prompt = request.question
     response = query(instructions, prompt)
